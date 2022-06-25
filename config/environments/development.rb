@@ -44,15 +44,27 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
+
+  # SMTP: Gmail
+#   config.action_mailer.smtp_settings = {
+#   :enable_starttls_auto => true,
+#   :address => "smtp.gmail.com",
+#   :port => 587,
+#   :domain => 'smtp.gmail.com',
+#   :user_name => ENV['GMAIL_ADDRESS'], #gmailアドレス
+#   :password => ENV['GMAIL_PASSWORD'], #gmailパスワード
+#   :authentication => 'login',
+# }
+
+  # SMTP: エックスサーバー
   config.action_mailer.smtp_settings = {
-  :enable_starttls_auto => true,
-  :address => "smtp.gmail.com",
-  :port => 587,
-  :domain => 'smtp.gmail.com',
-  :user_name => ENV['GMAIL_ADDRESS'], #gmailアドレス
-  :password => ENV['GMAIL_PASSWORD'], #gmailパスワード
-  :authentication => 'login',
-}
+    :address => ENV['XSERVER_HOST'], #Xサーバーホスト名
+    :port => 587,
+    :user_name => ENV['XSERVER_MAIL_ADDRESS'], #Xサーバーアドレス
+    :password => ENV['XSERVER_MAIL_PASSWORD'], #Xサーバーパスワード
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
