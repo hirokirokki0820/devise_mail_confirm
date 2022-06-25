@@ -74,10 +74,11 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-    :address => ENV['XSERVER_HOST'],
+    :address => 'smtp.sendgrid.net',
     :port => 587,
-    :user_name => ENV['XSERVER_MAIL_ADDRESS'],
-    :password => ENV['XSERVER_MAIL_PASSWORD'],
+    :domain => 'heroku.com',
+    :user_name => 'apikey',
+    :password => ENV['SNEDGRID_APIKEY'],
     :authentication => :plain,
     :enable_starttls_auto => true
   }
